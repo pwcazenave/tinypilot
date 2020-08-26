@@ -267,6 +267,7 @@ function onManualModifierButtonClicked(evt) {
   } else {
     evt.target.classList.add("pressed");
   }
+  document.getElementById("app").focus();
 }
 
 function onDisplayHistoryChanged(evt) {
@@ -286,6 +287,8 @@ function onKeyDownInPasteMode(e) {
   }
   // Treat any other key as cancellation of the paste.
   hideElementById("paste-overlay");
+  // Return control to normal input.
+  document.getElementById("app").focus();
 }
 
 // Place the caret (cursor) in the paste div so that we can listen for paste
@@ -357,8 +360,8 @@ function sendPastedText(pastedText, updateCards) {
       clearManualModifiers();
     }
   }
-  // Give the app focus again so we can continue typing after pasting.
-  document.onload = document.getElementById("app").focus();
+  // Give focus back to the app for normal text input.
+  document.getElementById("app").focus();
 }
 
 document.onload = document.getElementById("app").focus();
